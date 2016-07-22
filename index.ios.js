@@ -13,18 +13,40 @@ import {
   View
 } from 'react-native';
 
-import books from './data/books.json';
-
 class RNBookish extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {books: null};
+  }
 
-  
-  render() {
-    let book = books[0];
-    let bookThumbnails = `http://localhost:8081/data/images/thumbnails/${book.asin}.jpg`;
-    
+  // getInitialState() {
+  //   return {books: null};
+  // }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    // import books from './data/books.json';
+    let books = require('./data/books.json');
+    this.setState({
+      books: books
+    });
+  }
+
+  renderLoading() {
     return (
       <View style={styles.container}>
-        <Image source={{uri: bookThumbnails}} 
+        <Text>Loading books</Text>
+      </View>
+    );
+  }
+
+  renderBook(book) {
+    return (
+      <View style={styles.container}>
+        <Image source={{uri: `http://localhost:8081/data/images/thumbnails/${book.asin}.jpg`}} 
           style={styles.thumbnails}
         />
 
@@ -36,7 +58,16 @@ class RNBookish extends Component {
       </View>
     );
   }
-}
+
+  render() {
+    if(!this.state.books) {
+      return this.renderLoading();
+    }
+
+    let book = this.state.books[0];
+    return this.renderBook(book);
+  }
+};
 
 const styles = StyleSheet.create({
   container: {
