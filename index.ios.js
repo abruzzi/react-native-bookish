@@ -10,28 +10,30 @@ import {
   StyleSheet,
   Text,
   Image,
+  ListView,
   View
 } from 'react-native';
 
 class RNBookish extends Component {
   constructor(props) {
     super(props);
-    this.state = {books: null};
+    this.state = {
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 !== row2,
+      }),
+      loaded: false
+    };
   }
-
-  // getInitialState() {
-  //   return {books: null};
-  // }
 
   componentDidMount() {
     this.fetchData();
   }
 
   fetchData() {
-    // import books from './data/books.json';
     let books = require('./data/books.json');
     this.setState({
-      books: books
+      dataSource: this.state.dataSource.cloneWithRows(books),
+      loaded: true
     });
   }
 
@@ -60,12 +62,17 @@ class RNBookish extends Component {
   }
 
   render() {
-    if(!this.state.books) {
+    if(!this.state.loaded) {
       return this.renderLoading();
     }
 
-    let book = this.state.books[0];
-    return this.renderBook(book);
+    return (
+    <ListView style={styles.listView}
+      dataSource={this.state.dataSource}
+      renderRow={this.renderBook}
+    >
+    </ListView>
+    )
   }
 };
 
@@ -77,6 +84,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
   },
+
   thumbnails: {
     width: 38,
     height: 50
@@ -95,6 +103,12 @@ const styles = StyleSheet.create({
 
   author: {
     color: '#cccccc'
+  },
+
+  listView: {
+    marginLeft: 4,
+    marginRight: 4,
+    backgroundColor: '#F5FCFF'
   }
 });
 
