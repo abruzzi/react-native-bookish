@@ -8,9 +8,9 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
-  Image,
+  TabBarIOS,
   ListView,
+  Text,
   View
 } from 'react-native';
 
@@ -25,7 +25,8 @@ class RNBookish extends Component {
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
-      loaded: false
+      loaded: false,
+      selectedTab: 'list',
     };
   }
 
@@ -46,7 +47,53 @@ class RNBookish extends Component {
       return <LoadingView />;
     }
     
-    return <BookListView books={this.state.dataSource} />;
+    return (
+      <TabBarIOS
+        unselectedTintColor="#cccccc"
+        tintColor="#ffffff"
+        barTintColor="#F68D2E">
+
+        <TabBarIOS.Item
+          title="Book List"
+          systemIcon="recents"
+          selected={this.state.selectedTab === 'list'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'list',
+            });
+          }}>
+          <View>
+            <BookListView books={this.state.dataSource} />  
+          </View>          
+        </TabBarIOS.Item>
+
+        <TabBarIOS.Item
+          systemIcon="favorites"
+          title="Favorites"
+          selected={this.state.selectedTab === 'favorites'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'favorites',
+            });
+          }}>
+          <Text>favorites...</Text>
+        </TabBarIOS.Item>
+
+
+        <TabBarIOS.Item
+          systemIcon="more"
+          title="More"
+          selected={this.state.selectedTab === 'more'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'more',
+            });
+          }}>
+          <Text>More...</Text>
+        </TabBarIOS.Item>
+
+      </TabBarIOS>
+    )
   }
 };
 
