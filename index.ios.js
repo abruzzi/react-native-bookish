@@ -11,6 +11,7 @@ import {
   TabBarIOS,
   ListView,
   Text,
+  TextInput,
   View
 } from 'react-native';
 
@@ -51,7 +52,7 @@ class RNBookish extends Component {
       <TabBarIOS
         unselectedTintColor="#cccccc"
         tintColor="#ffffff"
-        barTintColor="#F68D2E">
+        barTintColor="#319B42">
 
         <TabBarIOS.Item
           title="Book List"
@@ -62,9 +63,7 @@ class RNBookish extends Component {
               selectedTab: 'list',
             });
           }}>
-          <View>
-            <BookListView books={this.state.dataSource} />  
-          </View>          
+          <BookListView books={this.state.dataSource} />  
         </TabBarIOS.Item>
 
         <TabBarIOS.Item

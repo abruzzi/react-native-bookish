@@ -34,8 +34,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 5,
-    marginTop: 5,
+    paddingBottom: 5,
+    paddingTop: 5,
+
+    borderTopWidth: 1, 
+    borderTopColor:'#eeeeee'
   },
 
   thumbnails: {
