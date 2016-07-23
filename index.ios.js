@@ -14,9 +14,9 @@ import {
   View
 } from 'react-native';
 
-import BookDetailView from './book-detail-view';
-import LoadingView from './loading-view';
-import BookListItemView from './book-list-item-view';
+import BookDetailView from './views/book-detail-view';
+import LoadingView from './views/loading-view';
+import BookListItemView from './views/book-list-item-view';
 
 class RNBookish extends Component {
   constructor(props) {
