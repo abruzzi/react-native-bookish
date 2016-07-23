@@ -14,9 +14,9 @@ import {
   View
 } from 'react-native';
 
+import BookListView from './views/book-list-view';
 import BookDetailView from './views/book-detail-view';
 import LoadingView from './views/loading-view';
-import BookListItemView from './views/book-list-item-view';
 
 class RNBookish extends Component {
   constructor(props) {
@@ -41,50 +41,13 @@ class RNBookish extends Component {
     });
   }
 
-  renderLoading() {
-    return (
-      <LoadingView />
-    );
-  }
-
-  renderBookItem(book) {
-    return (
-      <BookListItemView book={book} />
-    );
-  }
-
   render() {
     if(!this.state.loaded) {
-      return this.renderLoading();
+      return <LoadingView />;
     }
-
-    return (
-      <View style={styles.container}>
-        <ListView style={styles.listView}
-          dataSource={this.state.dataSource}
-          renderRow={this.renderBookItem}
-        >
-        </ListView>
-      </View>        
-    )
+    
+    return <BookListView books={this.state.dataSource} />;
   }
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    paddingTop: 20,
-  },
-
-  listView: {
-    marginLeft: 4,
-    marginRight: 4,
-    backgroundColor: '#FFFFFF'
-  }
-});
 
 AppRegistry.registerComponent('RNBookish', () => RNBookish);
