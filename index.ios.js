@@ -14,6 +14,10 @@ import {
   View
 } from 'react-native';
 
+import BookDetailView from './book-detail-view';
+import LoadingView from './loading-view';
+import BookListItemView from './book-list-item-view';
+
 class RNBookish extends Component {
   constructor(props) {
     super(props);
@@ -39,24 +43,13 @@ class RNBookish extends Component {
 
   renderLoading() {
     return (
-      <View style={styles.loading}>
-        <Text>Loading books</Text>
-      </View>
+      <LoadingView />
     );
   }
 
-  renderBook(book) {
+  renderBookItem(book) {
     return (
-      <View style={styles.book} >
-          <Image source={{uri: `http://localhost:8081/data/images/thumbnails/${book.asin}.jpg`}} 
-            style={styles.thumbnails}
-          />
-
-          <View style={styles.bookInfo}>
-            <Text style={styles.title}>{book.title}</Text>
-            <Text style={styles.author}>{book.author.join(', ')}</Text>
-          </View>
-      </View>
+      <BookListItemView book={book} />
     );
   }
 
@@ -69,7 +62,7 @@ class RNBookish extends Component {
       <View style={styles.container}>
         <ListView style={styles.listView}
           dataSource={this.state.dataSource}
-          renderRow={this.renderBook}
+          renderRow={this.renderBookItem}
         >
         </ListView>
       </View>        
@@ -78,7 +71,6 @@ class RNBookish extends Component {
 };
 
 const styles = StyleSheet.create({
-
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -86,39 +78,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
     paddingTop: 20,
-  },
-
-  loading: {
-    
-  },
-
-  book: {
-    flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 5,
-    marginTop: 5,
-  },
-
-  thumbnails: {
-    width: 38,
-    height: 50
-  },
-
-  bookInfo: {
-    flex: 1,
-    marginLeft: 10
-  },
-
-  title: {
-    fontSize: 18,
-    color: '#333333',
-    marginBottom: 8,
-  },
-
-  author: {
-    color: '#666666'
   },
 
   listView: {
