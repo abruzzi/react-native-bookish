@@ -11,7 +11,7 @@ export default class LoadingView extends Component {
 	      <View style={styles.loading}>
 	        <Text>Loading books</Text>
 	      </View>
-	    );	
+	    );
 	}
 }
 

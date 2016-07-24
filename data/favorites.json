@@ -1,0 +1,66 @@
+[
+  {
+    "title": "高效程序员的45个习惯:敏捷开发修炼之道(修订版)",
+    "author": ["Venkat Subramaniam", "Andy Hunt", "钱安川", "郑柯"],
+    "published_at": "2014-09-01",
+    "isbn": ["7115370362", "9787115370365"],
+    "asin": "B00OA9L3NU"
+  },
+  {
+    "title": "程序员思维修炼(修订版)",
+    "author": ["Andy Hunt", "崔康"],
+    "published_at": "2015-01-01",
+    "isbn": ["9787115374936"],
+    "asin": "B00QT2TS6U"
+  },
+  {
+    "title": "UNIX编程艺术",
+    "author": ["Eric S. Raymond", "姜宏", "何源", "蔡晓骏"],
+    "published_at": "2012-08-01",
+    "isbn": ["7121176653", "9787121176654"],
+    "asin": "B008Z1IEQ8"
+  },
+  {
+    "title": "修改代码的艺术",
+    "author": ["Michael C. Feathers", "侯伯薇"],
+    "published_at": "2014-06-11",
+    "isbn": ["9787111466253"],
+    "asin": "B00KMJ2Q1U"
+  },
+  {
+    "title": "人月神话(40周年中文纪念版)",
+    "author": ["Frederick P.Brooks", "UML China 翻译组", "汪颖"],
+    "published_at": "2015-05-11",
+    "isbn": ["9787302392644"],
+    "asin": "B00VR8ZO28"
+  },
+  {
+    "title": "代码大全(第2版)",
+    "author": ["Steve McConnell", "金戈"],
+    "published_at": "2011-10-01",
+    "isbn": ["7121022982", "9787121022982"],
+    "asin": "B0061XKRXA"
+  },
+  {
+    "title": "人件(原书第3版)(珍藏版)",
+    "author": ["Tom DeMarco", "Timothy Lister", "肖然", "张逸", "滕云"],
+    "published_at": "2014-09-16",
+    "isbn": ["9787111474364"],
+    "asin": "B00MO7R1SG"
+  },
+  {
+    "title": "UNIX网络编程(卷1):套接字联网API",
+    "author": ["W.Richard Stevens", "Bill Fenner", "Andrew M.Rudoff"],
+    "published_at": "2015-08-01",
+    "isbn": ["9787115367198"],
+    "asin": "B011S72JB6"
+  },
+  {
+    "title": "编译原理",
+    "author": ["Alfred V. Aho", "Monica S.Lam", "赵建华", "郑滔", "戴新宇"],
+    "published_at": "2009-01-01",
+    "isbn": ["9787111251217", "7111251210"],
+    "asin": "B001NGO85I"
+  }
+]
+

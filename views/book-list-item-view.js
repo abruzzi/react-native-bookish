@@ -13,19 +13,22 @@ import BookDetailView from './book-detail-view';
 export default class BookListItemView extends Component {
   static propTypes = {
     book: PropTypes.object.isRequired,
-    navigator: PropTypes.object.isRequired
+    navigator: PropTypes.object.isOptional,
   }
 
   detailPage() {
     let navigator = this.props.navigator;
 
-    navigator.push({
-      name: 'BookDetailView',
-      component: BookDetailView,
-      passProps: {
-        book: this.props.book
-      }
-    })
+    if(navigator) {
+      navigator.push({
+        name: 'BookDetailView',
+        component: BookDetailView,
+        passProps: {
+          book: this.props.book
+        }
+      })  
+    }
+    
   }
 
   render() {

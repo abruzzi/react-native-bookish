@@ -13,11 +13,7 @@ import { SwipeListView } from 'react-native-swipe-list-view';
 import LoadingView from './loading-view';
 import BookListItemView from './book-list-item-view';
 
-export default class BookListView extends Component {
-  static propTypes = {
-    navigator: PropTypes.object.isRequired
-  }
-
+export default class FavoriteListView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,7 +29,7 @@ export default class BookListView extends Component {
   }
 
   fetchData() {
-    let books = require('../data/books.json');
+    let books = require('../data/favorites.json');
     //https://github.com/abruzzi/react-native-bookish/raw/master/data/books.json
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(books),
@@ -57,19 +53,10 @@ export default class BookListView extends Component {
         <TouchableOpacity style={[styles.backRightBtn, styles.backRightBtnRight]} onPress={ (secId, rowId, rowMap) => {
           console.log(book);
         } }>
-          <Text style={styles.backTextWhite}>Favorite</Text>
+          <Text style={styles.backTextWhite}>Remove</Text>
         </TouchableOpacity>
       </View>    
     );
-  }
-
-  search(term) {
-    let books = require('../data/books.json');
-    let filtered = books.filter((book) => book.author.join(' ').match(term));
-
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(filtered)
-    })
   }
 
   render() {
@@ -79,7 +66,6 @@ export default class BookListView extends Component {
 
     return (
       <View style={styles.container}>
-        <TextInput style={styles.search} placeholder="Search" onChangeText={(text) => this.search(text)}/>
         <View style={styles.listContainer}>
           <SwipeListView style={styles.listView}
             dataSource={this.state.dataSource}

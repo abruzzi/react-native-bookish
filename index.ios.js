@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 
 import BookListView from './views/book-list-view';
+import FavoriteListView from './views/favorite-list-view';
+import MoreView from './views/more-view';
 
 class RNBookish extends Component {
   constructor(props) {
@@ -57,7 +59,7 @@ class RNBookish extends Component {
               selectedTab: 'favorites',
             });
           }}>
-          <Text>favorites...</Text>
+          <FavoriteListView />
         </TabBarIOS.Item>
 
 
@@ -70,7 +72,7 @@ class RNBookish extends Component {
               selectedTab: 'more',
             });
           }}>
-          <Text>More...</Text>
+          <MoreView />
         </TabBarIOS.Item>
 
       </TabBarIOS>
