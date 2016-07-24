@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -17,37 +11,16 @@ import {
 
 import BookListView from './views/book-list-view';
 import BookDetailView from './views/book-detail-view';
-import LoadingView from './views/loading-view';
 
 class RNBookish extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2,
-      }),
-      loaded: false,
-      selectedTab: 'list',
+      selectedTab: 'list'
     };
   }
 
-  componentDidMount() {
-    this.fetchData();
-  }
-
-  fetchData() {
-    let books = require('./data/books.json');
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(books),
-      loaded: true
-    });
-  }
-
-  render() {
-    if(!this.state.loaded) {
-      return <LoadingView />;
-    }
-    
+  render() {    
     return (
       <TabBarIOS
         unselectedTintColor="#cccccc"
@@ -63,7 +36,7 @@ class RNBookish extends Component {
               selectedTab: 'list',
             });
           }}>
-          <BookListView books={this.state.dataSource} />  
+          <BookListView />  
         </TabBarIOS.Item>
 
         <TabBarIOS.Item

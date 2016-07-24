@@ -6,26 +6,58 @@ import {
   View
 } from 'react-native';
 
-
+import LoadingView from './loading-view';
 import BookListItemView from './book-list-item-view';
 
 export default class BookListView extends Component {
-  static propTypes = {
-    books: PropTypes.object.isRequired
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 !== row2,
+      }),
+      loaded: false
+    };
   }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    let books = require('../data/books.json');
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(books),
+      loaded: true
+    });
+  }
+
   renderBookItem(book) {
     return (
       <BookListItemView book={book} />
     );
   }
 
+  search(term) {
+    let books = require('../data/books.json');
+    let filtered = books.filter((book) => book.author.join(' ').match(term));
+
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(filtered)
+    })
+  }
+
   render() {
+    if(!this.state.loaded) {
+      return <LoadingView />;
+    }
+
     return (
       <View style={styles.container}>
-        <TextInput style={styles.search} placeholder="Search"/>
+        <TextInput style={styles.search} placeholder="Search" onChangeText={(text) => this.search(text)}/>
         <View style={styles.listContainer}>
           <ListView style={styles.listView}
-            dataSource={this.props.books}
+            dataSource={this.state.dataSource}
             renderRow={this.renderBookItem}
           >
           </ListView>
