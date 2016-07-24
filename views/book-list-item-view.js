@@ -4,25 +4,43 @@ import {
   Text,
   Image,
   ListView,
+  TouchableOpacity,
   View
 } from 'react-native';
 
+import BookDetailView from './book-detail-view';
+
 export default class BookListItemView extends Component {
   static propTypes = {
-    book: PropTypes.object.isRequired
+    book: PropTypes.object.isRequired,
+    navigator: PropTypes.object.isRequired
+  }
+
+  detailPage() {
+    let navigator = this.props.navigator;
+
+    navigator.push({
+      name: 'BookDetailView',
+      component: BookDetailView,
+      params: {
+        book: this.props.book
+      }
+    })
   }
 
   render() {
     return (
       <View style={styles.book} >
+        <TouchableOpacity onPress={this.detailPage.bind(this)} style={styles.touch}>
           <Image source={{uri: `http://localhost:8081/data/images/thumbnails/${this.props.book.asin}.jpg`}} 
             style={styles.thumbnails}
           />
 
           <View style={styles.bookInfo}>
-            <Text style={styles.title}>{this.props.book.title}</Text>
-            <Text style={styles.author}>{this.props.book.author.join(', ')}</Text>
+            <Text style={styles.title} lineBreakMode="clip" numberOfLines={1}>{this.props.book.title}</Text>
+            <Text style={styles.author} lineBreakMode="clip" numberOfLines={1}>{this.props.book.author.join(', ')}</Text>
           </View>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -39,6 +57,13 @@ const styles = StyleSheet.create({
 
     borderTopWidth: 1, 
     borderTopColor:'#eeeeee'
+  },
+
+  touch: {
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 
   thumbnails: {

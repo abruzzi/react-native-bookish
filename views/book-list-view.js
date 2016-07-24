@@ -10,6 +10,10 @@ import LoadingView from './loading-view';
 import BookListItemView from './book-list-item-view';
 
 export default class BookListView extends Component {
+  static propTypes = {
+    navigator: PropTypes.object.isRequired
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -34,7 +38,7 @@ export default class BookListView extends Component {
 
   renderBookItem(book) {
     return (
-      <BookListItemView book={book} />
+      <BookListItemView book={book} navigator={this.props.navigator}/>
     );
   }
 
@@ -58,7 +62,7 @@ export default class BookListView extends Component {
         <View style={styles.listContainer}>
           <ListView style={styles.listView}
             dataSource={this.state.dataSource}
-            renderRow={this.renderBookItem}
+            renderRow={this.renderBookItem.bind(this)}
           >
           </ListView>
         </View>

@@ -6,11 +6,11 @@ import {
   ListView,
   Text,
   TextInput,
+  Navigator,
   View
 } from 'react-native';
 
 import BookListView from './views/book-list-view';
-import BookDetailView from './views/book-detail-view';
 
 class RNBookish extends Component {
   constructor(props) {
@@ -36,7 +36,17 @@ class RNBookish extends Component {
               selectedTab: 'list',
             });
           }}>
-          <BookListView />  
+          
+          <Navigator
+              initialRoute={{ name: 'BookListView', component: BookListView }}
+              configureScene={(route) => {
+                return Navigator.SceneConfigs.VerticalDownSwipeJump;
+              }}
+              renderScene={(route, navigator) => {
+                let Component = route.component;
+                return <Component {...route.params} navigator={navigator} />
+              }} />
+
         </TabBarIOS.Item>
 
         <TabBarIOS.Item

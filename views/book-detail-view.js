@@ -7,16 +7,24 @@ import {
 
 export default class BookDetailView extends Component {
   static propTypes = {
-    title: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired
+    book: PropTypes.object.isRequired
   }
 
   render() {
     return (
-      <View>
-        <Text>{this.props.title}</Text>
-        <Text>{this.props.author.join(', ')}</Text>
+      <View style={styles.container}>
+        <Text>{this.props.book.title}</Text>
+        <Text>{this.props.book.author.join(', ')}</Text>
       </View>
     )
   }
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center'
+  }
+});
