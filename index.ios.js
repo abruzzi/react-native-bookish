@@ -6,7 +6,7 @@ import {
   ListView,
   Text,
   TextInput,
-  Navigator,
+  NavigatorIOS,
   View
 } from 'react-native';
 
@@ -37,15 +37,14 @@ class RNBookish extends Component {
             });
           }}>
           
-          <Navigator
-              initialRoute={{ name: 'BookListView', component: BookListView }}
-              configureScene={(route) => {
-                return Navigator.SceneConfigs.VerticalDownSwipeJump;
-              }}
+          <NavigatorIOS
+              initialRoute={{ title: 'Bookish', name: 'BookListView', component: BookListView }}
+              style={{flex: 1}}
               renderScene={(route, navigator) => {
                 let Component = route.component;
                 return <Component {...route.params} navigator={navigator} />
-              }} />
+              }}
+               />
 
         </TabBarIOS.Item>
 

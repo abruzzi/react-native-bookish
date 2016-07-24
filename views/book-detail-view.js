@@ -19,7 +19,7 @@ export default class BookDetailView extends Component {
           />
         <View style={styles.info}>
           <Text style={styles.title}>{this.props.book.title}</Text>
-          <Text>{this.props.book.author.join(', ')}</Text>
+          <Text style={styles.author}>{this.props.book.author.join(', ')}</Text>
         </View>
       </View>
     )
@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingTop: 120,
   },
   
   info: {
@@ -40,12 +41,16 @@ const styles = StyleSheet.create({
 
   thumbnails: {
     flex: 1,
-    width: 300
+    width: 240
   },
 
   title: {
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'left'
+  },
+
+  author: {
+
   }
 });

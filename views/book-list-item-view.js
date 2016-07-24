@@ -22,7 +22,7 @@ export default class BookListItemView extends Component {
     navigator.push({
       name: 'BookDetailView',
       component: BookDetailView,
-      params: {
+      passProps: {
         book: this.props.book
       }
     })

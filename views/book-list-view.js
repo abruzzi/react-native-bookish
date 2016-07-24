@@ -89,8 +89,8 @@ const styles = StyleSheet.create({
   },
 
   listView: {
-    paddingLeft: 4,
-    paddingRight: 4,
+    paddingLeft: 6,
+    paddingRight: 6,
     backgroundColor: '#FFFFFF'
   },
 
@@ -100,9 +100,10 @@ const styles = StyleSheet.create({
     borderColor:'#cccccc',
     paddingLeft: 10,
     backgroundColor:'#ffffff',
-    marginTop: 4,
-    marginBottom: 4,
-    marginLeft: 4,
-    marginRight: 4,
+    marginTop: 50,
+    marginBottom: 6,
+    marginLeft: 6,
+    marginRight: 6,
+    borderRadius: 2
   }
 });
