@@ -3,8 +3,12 @@ import {
   StyleSheet,
   ListView,
   TextInput,
+  Text,
+  TouchableOpacity,
   View
 } from 'react-native';
+
+import { SwipeListView } from 'react-native-swipe-list-view';
 
 import LoadingView from './loading-view';
 import BookListItemView from './book-list-item-view';
@@ -42,6 +46,22 @@ export default class BookListView extends Component {
     );
   }
 
+  addToFavorite(book) {
+    console.log(book);
+  }
+
+  renderActions(book) {
+    return (
+      <View style={styles.rowBack}>
+        <TouchableOpacity style={[styles.backRightBtn, styles.backRightBtnRight]} onPress={ (secId, rowId, rowMap) => {
+          console.log(book);
+        } }>
+          <Text style={styles.backTextWhite}>Favorite</Text>
+        </TouchableOpacity>
+      </View>    
+    );
+  }
+
   search(term) {
     let books = require('../data/books.json');
     let filtered = books.filter((book) => book.author.join(' ').match(term));
@@ -60,11 +80,13 @@ export default class BookListView extends Component {
       <View style={styles.container}>
         <TextInput style={styles.search} placeholder="Search" onChangeText={(text) => this.search(text)}/>
         <View style={styles.listContainer}>
-          <ListView style={styles.listView}
+          <SwipeListView style={styles.listView}
             dataSource={this.state.dataSource}
             renderRow={this.renderBookItem.bind(this)}
+            renderHiddenRow={this.renderActions.bind(this)}
+            rightOpenValue={-75}
           >
-          </ListView>
+          </SwipeListView>
         </View>
       </View>
     )
@@ -86,9 +108,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: '#FFFFFF',
   },
 
   listView: {
+    flex: 1,
     paddingLeft: 6,
     paddingRight: 6,
     backgroundColor: '#FFFFFF'
@@ -105,5 +129,32 @@ const styles = StyleSheet.create({
     marginLeft: 6,
     marginRight: 6,
     borderRadius: 2
+  },
+
+  rowBack: {
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingLeft: 15,
+  },
+
+  backRightBtn: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    width: 75
+  },
+
+  backRightBtnRight: {
+    backgroundColor: '#F68D2E',
+    right: 0
+  },
+
+  backTextWhite: {
+    color: '#FFFFFF'
   }
 });

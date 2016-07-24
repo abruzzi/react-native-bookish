@@ -4,7 +4,7 @@ import {
   Text,
   Image,
   ListView,
-  TouchableOpacity,
+  TouchableHighlight,
   View
 } from 'react-native';
 
@@ -30,8 +30,8 @@ export default class BookListItemView extends Component {
 
   render() {
     return (
-      <View style={styles.book} >
-        <TouchableOpacity onPress={this.detailPage.bind(this)} style={styles.touch}>
+      <TouchableHighlight style={styles.book} onPress={this.detailPage.bind(this)}>
+        <View style={styles.bookItemContainer}>
           <Image source={{uri: `http://localhost:8081/data/images/thumbnails/${this.props.book.asin}.jpg`}} 
             style={styles.thumbnails}
           />
@@ -40,8 +40,8 @@ export default class BookListItemView extends Component {
             <Text style={styles.title} lineBreakMode="clip" numberOfLines={1}>{this.props.book.title}</Text>
             <Text style={styles.author} lineBreakMode="clip" numberOfLines={1}>{this.props.book.author.join(', ')}</Text>
           </View>
-        </TouchableOpacity>
-      </View>
+        </View>
+      </TouchableHighlight>
     );
   }
 }
@@ -54,12 +54,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: 5,
     paddingTop: 5,
-
-    borderTopWidth: 1, 
+    backgroundColor: '#FFFFFF',
+    borderTopWidth: 1,
     borderTopColor:'#eeeeee'
   },
 
-  touch: {
+  bookItemContainer: {
     flex: 1,
     justifyContent: 'center',
     flexDirection: 'row',
